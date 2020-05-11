@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Empleado</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<h2 th:text="${employee.employee_id == 0 ? 'Nuevo Empleado': 'Editar Empleado'}">Editar Empleado</h2>
+<hr/>
+<form method="post" th:action="@{/employee/guardar}" th:object="${employee}">
+    <input th:value="*{employee_id}" name="employee_id" type="hidden"/>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="firstName">Nombre </label>
+            <input th:field="*{firstName}" type="text" class="form-control" >
+            <div class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" ></div>
+        </div>
+        <div class="form-group col-6">
+            <label for="lastName">Apellido</label>
+            <input th:field="*{lastName}"  type="text" class="form-control" >
+            <div class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" ></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input th:field="*{email}"  type="text" class="form-control" >
+            <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" ></div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Contraseña</label>
+            <input th:field="*{password}"  type="text" class="form-control" >
+            <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" ></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="trabajo">Puesto</label>
+            <select th:field="*{trabajo}" class="form-control" >
+                <option th:each="job : ${listaPuesto}" th:value="${job.job_id}" th:text="${job.jobTitle}"
+                ></option>
+            </select>
+        </div>
+        <div class="form-group col-6">
+            <div class="form-group col-6">
+                <label for="salary">Sueldo</label>
+                <input th:field="*{salary}"  type="text" class="form-control" >
+                <div class="text-danger" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" ></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="managerId">Jefes</label>
+            <select class="form-control" th:field="*{managerId}">
+                <option th:each="jef : ${ listaJefes }" th:value="*{managerId}"
+                        th:text="${jef.firstName + jef.lastName}"></option>
+            </select>
+        </div>
+        <div class="form-group col-6">
+            <label for="departamento">Departamento</label>
+            <select class="form-control" th:field="*{departamento}">
+                <option th:each="dep : ${listaDepartamento}" th:value="${dep.department_id}"
+                        th:text="${dep.departmentName}"></option>
+            </select>
+        </div>
+    </div>
+
+    <a th:href="@{/employee}" class="btn btn-danger">Cancelar</a>
+    <button type="submit" class="btn btn-primary" th:text="${employee.employee_id == 0 ? 'Registrar': 'Actualizar'}">Guardar</button>
+</form>
+</body>
+</html>
