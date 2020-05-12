@@ -1,10 +1,7 @@
 package com.example.laboratorio4.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 
 @Entity
@@ -23,7 +20,8 @@ public class Employees {
     private String lastName;
     @Column(nullable = false)
     @Size(max = 25,message = "Solo se permiten 25 caracteres")
-    @NotBlank
+    @NotBlank(message = "No puede ser vacío")
+    @Email(message = "Debe tener el formato: nombre@correo.com")
     private String email;
     @Size(max = 20,message = "Solo se permiten 20 caracteres")
     private String phoneNumber;

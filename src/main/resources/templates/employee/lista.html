@@ -13,7 +13,7 @@
     <h1>Lista de Empleados</h1>
     <a class="btn btn-primary mt-4 mb-4" th:href="@{/employee/nuevo}">Nuevo empleado</a>
     <!-- COMPLETAR -->
-    <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/buscarEmpleado}">
+    <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/employee/search}">
         <input name="searchField" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>

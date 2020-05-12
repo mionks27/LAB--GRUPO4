@@ -1,5 +1,7 @@
 package com.example.laboratorio4.controller;
+import com.example.laboratorio4.entity.Departments;
 import com.example.laboratorio4.entity.Employees;
+import com.example.laboratorio4.entity.Jobs;
 import com.example.laboratorio4.repository.DepartmentsRepository;
 import com.example.laboratorio4.repository.EmployeesRepository;
 import com.example.laboratorio4.repository.JobsRepository;
@@ -15,10 +17,7 @@ import javax.jws.WebParam;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("/employee")
@@ -73,7 +72,7 @@ public class EmployeeController {
             employee.setHireDate(fechaActual);
             employeesRepository.save(employee);
 
-            return "redirect:/lista";
+            return "redirect:/employee/lista";
         }
 
     }
@@ -90,7 +89,7 @@ public class EmployeeController {
             model.addAttribute("listaDepartamento", departmentRepository.findAll());
             return "employee/Frm";
         } else {
-            return "redirect:/lista";
+            return "redirect:/employee/lista";
         }
     }
 
@@ -104,13 +103,17 @@ public class EmployeeController {
         }
 
 
-        return "redirect:/lista";
+        return "redirect:/employee/lista";
     }
 
     @PostMapping("/search")
-    public String buscar (){
-
-        return "";
+    public String buscar (@RequestParam("searchField") String search, Model model){
+         List<Employees> lista = employeesRepository.obtenerEmpleados(search,search,search,search,search);
+         model.addAttribute("listaEmpleados",lista);
+         if(lista.isEmpty()){
+             return "redirect:/employee/lista";
+         }
+        return "employee/lista";
     }
 
 }

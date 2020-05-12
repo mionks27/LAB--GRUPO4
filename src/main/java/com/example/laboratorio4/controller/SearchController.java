@@ -25,6 +25,7 @@ public class SearchController {
         return "Search/lista2";
     }
 
+
     @GetMapping(value = "/Filtro2")
     public String listarReporteSalarioMaximo(Model model){
         model.addAttribute("listaSalarioMax", employeesRepository.reporteSalario());
