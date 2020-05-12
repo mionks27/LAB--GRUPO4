@@ -14,7 +14,7 @@ public interface EmployeesRepository extends JpaRepository<Employees,Integer> {
 
     @Query(value = "SELECT e.* FROM employees e, jobs j,departments d,locations l\n" +
             "where (e.job_id = j.job_id and e.department_id = d.department_id and  d.location_id = l.location_id) " +
-            "and (e.first_name= ? or e.last_name= ? or d.department_name= ? or l.city = ? or j.job_title =?",nativeQuery = true)
+            "and (e.first_name= ? or e.last_name= ? or d.department_name= ? or l.city = ? or j.job_title =?)",nativeQuery = true)
     List<Employees> obtenerEmpleados(String nombre, String apellido, String departamento, String ciudad, String trabajo);
 
 

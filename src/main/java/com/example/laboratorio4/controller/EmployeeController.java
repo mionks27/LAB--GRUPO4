@@ -72,7 +72,7 @@ public class EmployeeController {
             employee.setHireDate(fechaActual);
             employeesRepository.save(employee);
 
-            return "redirect:/lista";
+            return "redirect:/employee/lista";
         }
 
     }
@@ -89,7 +89,7 @@ public class EmployeeController {
             model.addAttribute("listaDepartamento", departmentRepository.findAll());
             return "employee/Frm";
         } else {
-            return "redirect:/lista";
+            return "redirect:/employee/lista";
         }
     }
 
@@ -103,7 +103,7 @@ public class EmployeeController {
         }
 
 
-        return "redirect:/lista";
+        return "redirect:/employee/lista";
     }
 
     @PostMapping("/search")
@@ -111,7 +111,7 @@ public class EmployeeController {
          List<Employees> lista = employeesRepository.obtenerEmpleados(search,search,search,search,search);
          model.addAttribute("listaEmpleados",lista);
          if(lista.isEmpty()){
-             return "redirect:/lista"; 
+             return "redirect:/employee/lista";
          }
         return "employee/lista";
     }
