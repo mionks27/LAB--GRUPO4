@@ -11,18 +11,30 @@
 <body>
 <div class="container">
     <h1>Recursos Humanos</h1>
-    <a class="btn btn-primary mt-4 mb-4" th:href="@{}">Nuevo Registro</a>
+    <a class="btn btn-primary mt-4 mb-4" href="#">Nuevo Registro</a>
 
-        <table class="table">
+    <table class="table">
         <thead>
-        <tr>
-            <!-- COMPLETAR-->
-        </tr>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cargo</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Años Trabajados</th>
+                <th>Meses Trabajados</th>
+            </tr>
         </thead>
         <tbody>
-        <tr th:each="historia : ${listaHistorial}">
-        <!-- COMPLETAR-->
-        </tr>
+            <tr th:each="historia : ${listaHistorial}">
+                <td th:text="${historia.nombre}"></td>
+                <td th:text="${historia.apellido}"></td>
+                <td th:text="${historia.cargo}"></td>
+                <td th:text="${historia.fechainicio}"></td>
+                <td th:text="${historia.fechafin}"></td>
+                <td th:text="${historia.años}"></td>
+                <td th:text="${historia.meses}"></td>
+            </tr>
         </tbody>
     </table>
 </div>

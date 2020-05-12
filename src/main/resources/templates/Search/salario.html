@@ -15,11 +15,19 @@
     <table class="table">
         <thead>
         <tr>
-            <!-- COMPLETAR -->
+            <th>ID</th>
+            <th>Departamento</th>
+            <th>Promedio</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-            <!-- COMPLETAR -->
+            <tr th:each="x:${listaSalarioMax}">
+                <td th:text="${x.ide}"></td>
+                <td th:text="${x.departamento}"></td>
+                <td th:text="${x.promedio}"></td>
+                <td><a class="btn btn-primary" th:href="@{'/Search/listar' + '?id=' + ${x.ide}}">Info</a></td>
+            </tr>
         </tbody>
     </table>
 </div>

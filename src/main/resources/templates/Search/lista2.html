@@ -11,13 +11,34 @@
 <body>
 <div class="container">
     <h1>Empleados con Mayor Salario en la Empresa</h1>
-    <!-- COMPLETAR -->
+    <div class="d-flex">
+        <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/Search/buscar}">
+            <input name="searchField" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+        <a class="btn btn-primary" th:href="@{/Search/Salario}">Limpiar</a>
+        <a class="btn btn-primary" th:href="@{/Search/}">Regresar</a>
+    </div>
+
+
     <table class="table">
         <thead>
-        <!-- COMPLETAR -->
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Puesto</th>
+        </tr>
         </thead>
         <tbody>
-        <!-- COMPLETAR -->
+            <tr th:each="x:${listaEmpMayorSalario}">
+                <td th:text="${x.nombre}"></td>
+                <td th:text="${x.apellido}"></td>
+                <td th:text="${x.fechainicio}"></td>
+                <td th:text="${x.fechafin}"></td>
+                <td th:text="${x.puesto}"></td>
+            </tr>
         </tbody>
     </table>
 </div>

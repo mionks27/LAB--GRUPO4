@@ -13,10 +13,24 @@
         <h1>Empleados por Departamento</h1>
             <table class="table">
                 <thead>
-                <!-- COMPLETAR -->
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cargo</th>
+                        <th>Sueldo</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                <!-- COMPLETAR -->
+                    <tr th:each="l:${listaEmpDep}">
+                        <td th:text="${l.ide}"></td>
+                        <td th:text="${l.nombre}"></td>
+                        <td th:text="${l.apellido}"></td>
+                        <td th:text="${l.cargo}"></td>
+                        <td th:text="${l.sueldo}"></td>
+                        <td><a class="btn btn-primary" th:href="@{'/Search/editarEmpDep' + '?id=' + ${l.ide}}">Editar</a></td>
+                    </tr>
                 </tr>
                 </tbody>
             </table>
